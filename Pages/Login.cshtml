@@ -1,0 +1,25 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div style="color: red;">@Model.ErrorMessage</div>
+}
+
+<form method="post">
+    <label>Username:</label>
+    <input type="text" asp-for="Username" required /><br /><br />
+
+    <label>Password:</label>
+    <input type="password" asp-for="Password" required /><br /><br />
+
+    <button type="submit">Login</button>
+</form>
+
+<!-- Button to Navigate to Signup Page -->
+<p>New user? <a asp-page="/Signup">Create an account</a></p>

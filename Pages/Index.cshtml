@@ -1,0 +1,29 @@
+﻿@page
+@model IndexModel
+
+<h2>Hotel List</h2>
+<table>
+    <tr><th>Name</th><th>Location</th><th>Rooms</th><th>Action</th></tr>
+    @foreach (var hotel in Model.Hotels)
+    {
+        <tr>
+            <td>@hotel.Name</td>
+            <td>@hotel.City</td>
+            <td>@hotel.HotelId</td>
+            <td>
+                <form method="post">
+                    <input type="hidden" name="id" value="@hotel.HotelId" />
+                    <button type="submit" asp-page-handler="Delete">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+
+<h2>Add Hotel</h2>
+<form method="post">
+    <input type="text" name="name" placeholder="Name" required />
+    <input type="text" name="city" placeholder="Location" required />
+    @* <input type="number" name="HotelId" placeholder="HotelId" required /> *@
+    <button type="submit" asp-page-handler="Create">Add Hotel</button>
+</form>
