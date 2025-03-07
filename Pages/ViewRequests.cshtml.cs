@@ -1,12 +1,13 @@
 ﻿using Hotel_Booking_New.Model;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-//using YourNamespace.Data; // Update with your actual namespace
-//using YourNamespace.Models; // Update with your actual namespace
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class ViewRequestModel : PageModel
 {
-    private readonly HotelContext _context; // Inject DB context
+    private readonly HotelContext _context;
 
     public ViewRequestModel(HotelContext context)
     {
@@ -17,6 +18,35 @@ public class ViewRequestModel : PageModel
 
     public async Task OnGetAsync()
     {
-        Hotels = await _context.Hotels.ToListAsync(); // Fetch all hotels
+        // Fetch only hotels that are pending approval
+        Hotels = await _context.Hotels.Where(h => h.Status == "Pending").ToListAsync();
+    }
+
+    public async Task<IActionResult> OnPostApproveAsync(int hotelId)
+    {
+        var hotel = await _context.Hotels.FindAsync(hotelId);
+        if (hotel == null)
+        {
+            return NotFound();
+        }
+
+        hotel.Status = "Approved"; // Mark as Approved
+        await _context.SaveChangesAsync();
+
+        return RedirectToPage();
+    }
+
+    public async Task<IActionResult> OnPostRejectAsync(int hotelId)
+    {
+        var hotel = await _context.Hotels.FindAsync(hotelId);
+        if (hotel == null)
+        {
+            return NotFound();
+        }
+
+        _context.Hotels.Remove(hotel); // Remove from database
+        await _context.SaveChangesAsync();
+
+        return RedirectToPage();
     }
 }

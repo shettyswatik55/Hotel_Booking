@@ -1,5 +1,8 @@
 ﻿@page
 @model ViewRequestModel
+@{
+    ViewData["Title"] = "View Hotels";
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +14,7 @@
 </head>
 <body>
     <div class="container mt-4">
-        <h2 class="text-center mb-4">Available Hotels</h2>
+        <h2 class="text-center mb-4">Hotel Approval Requests</h2>
         <div class="row">
             @foreach (var hotel in Model.Hotels)
             {
@@ -20,10 +23,25 @@
                         <img src="@hotel.ImagePath" class="card-img-top" alt="Hotel Image" style="height: 200px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">@hotel.Name</h5>
+                            <p class="card-text"><strong>Username:</strong> @hotel.UserName</p>
                             <p class="card-text"><strong>Location:</strong> @hotel.City</p>
-                            @* <p class="card-text"><strong>Rating:</strong> @hotel.Rating ⭐</p> *@
-                            <p class="card-text"><strong>Description:</strong> $@hotel.Description</p>
-                            <a href="#" class="btn btn-primary">View Details</a>
+                            <p class="card-text"><strong>Address:</strong> @hotel.Address</p>
+                            <p class="card-text"><strong>Description:</strong> @hotel.Description</p>
+                            <p class="card-text"><strong>Email:</strong> @hotel.Email</p>
+                            <p class="card-text"><strong>Phone:</strong> @hotel.PhoneNumber</p>
+                            <p class="card-text"><strong>Status:</strong> @hotel.Status</p>
+
+                            <form method="post">
+                                <input type="hidden" name="hotelId" value="@hotel.HotelId" />
+
+                                <button type="submit" asp-page-handler="Approve" class="btn btn-success btn-sm">
+                                    Approve
+                                </button>
+
+                                <button type="submit" asp-page-handler="Reject" class="btn btn-danger btn-sm">
+                                    Reject
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
