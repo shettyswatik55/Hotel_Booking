@@ -35,10 +35,24 @@
 
                         </li>
 
-                        @if (Context.Session.GetString("LoggedInUser")!="")
+                        @if (!string.IsNullOrEmpty(Context.Session.GetString("LoggedInUser")))
                         {
                             <li class="nav-item">
                                 <a class="nav-link" asp-page="/AddHotel">Add Hotel</a>
+                            </li>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Context.Session.GetString("LoggedInUser")))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-page="/Profile">Profile</a>
+                            </li>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Context.Session.GetString("LoggedInUser")))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-page="/ViewHotels">Hotels</a>
                             </li>
                         }
 

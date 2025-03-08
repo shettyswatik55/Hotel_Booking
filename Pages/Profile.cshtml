@@ -1,0 +1,53 @@
+﻿@page
+@model ProfileModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="card shadow-lg">
+            <div class="card-body text-center">
+                <img src="~/images/user.png" alt="User Logo" class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
+                <h2>@Model.UserDetails?.Username</h2>
+                <p><strong>Email:</strong> @Model.UserDetails?.Email</p>
+            </div>
+        </div>
+
+        <h3 class="mt-4">Your Hotels</h3>
+
+        @if (Model.Hotels.Any())
+        {
+            <div class="row">
+                @foreach (var hotel in Model.Hotels)
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <img src="@hotel.ImagePath" class="card-img-top" alt="Hotel Image" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">@hotel.Name</h5>
+                                <p class="card-text"><strong>Location:</strong> @hotel.City</p>
+                                <p class="card-text"><strong>Address:</strong> @hotel.Address</p>
+                                <p class="card-text"><strong>Email:</strong> @hotel.Email</p>
+                                <p class="card-text"><strong>Phone:</strong> @hotel.PhoneNumber</p>
+                                <p class="card-text"><strong>Status:</strong> <span class="badge bg-@(hotel.Status == "Approved" ? "success" : "warning")">@hotel.Status</span></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p class="text-muted">You have not added any hotels yet.</p>
+        }
+    </div>
+
+</body>
+</html>

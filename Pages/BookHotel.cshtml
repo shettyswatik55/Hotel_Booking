@@ -1,0 +1,58 @@
+﻿@page "{hotelId:int}/{userId:int}"
+@model BookHotelModel
+@* @{ *@
+@*     ViewData["Title"] = "Book Your Stay"; *@
+@*     // var today = DateTime.Now.ToString("yyyy-MM-dd"); *@
+@*     // var tomorrow = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd"); *@
+@* } *@
+
+<h2>Book Your Stay</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Booking.HotelId" />
+    <input type="hidden" asp-for="Booking.UserId" />
+
+    <!-- Hotel Details -->
+    <div class="mb-3">
+        <label class="form-label">Hotel Name</label>
+        <input type="text" class="form-control" value="@Model.Hotel.Name" disabled />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Location</label>
+        <input type="text" class="form-control" value="@Model.Hotel.City" disabled />
+    </div>
+
+    <!-- Booking Details -->
+    <div class="mb-3">
+        <label class="form-label">Check-In Date</label>
+        <input type="date" class="form-control" asp-for="Booking.CheckInDate"  required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Check-Out Date</label>
+        <input type="date" class="form-control" asp-for="Booking.CheckOutDate" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Guests</label>
+        <input type="number" class="form-control" asp-for="Booking.Guests" min="1" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Contact Number</label>
+        <input type="tel" class="form-control" asp-for="Booking.ContactNumber" required placeholder="Enter your phone number" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Special Requests</label>
+        <textarea class="form-control" asp-for="Booking.SpecialRequests" placeholder="Any additional requests (optional)"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Total Price</label>
+        <input type="text" class="form-control" value="Negotiable" disabled />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Confirm Booking</button>
+</form>

@@ -1,0 +1,112 @@
+﻿@page
+@model ViewHotelsModel
+@{
+    ViewData["Title"] = "Available Hotels";
+}
+
+<h2>Available Hotels</h2>
+
+@if (Model.Hotels.Any())
+{
+    <div class="row">
+        @foreach (var hotel in Model.Hotels)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@hotel.ImagePath" class="card-img-top" alt="Hotel Image" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@hotel.Name</h5>
+                        <p class="card-text"><strong>Location:</strong> @hotel.City</p>
+                        <p class="card-text"><strong>Address:</strong> @hotel.Address</p>
+                        <p class="card-text"><strong>Description:</strong> @hotel.Description</p>
+
+                        <!-- Book Now Button -->
+                        <a asp-page="/BookHotel" asp-route-hotelId="@hotel.HotelId" asp-route-userId="@Model.LoggedInUserId" class="btn btn-primary">Book Now</a>
+
+                        <hr>
+
+                        <!-- Rating & Feedback Form -->
+                        <h5>Add Your Feedback</h5>
+                        <form method="post" class="feedback-form">
+                            <input type="hidden" name="HotelId" value="@hotel.HotelId" />
+                            <input type="hidden" name="UserId" value="@Model.LoggedInUserId" />
+
+                            <!-- Star Rating System -->
+                            <div class="star-rating" data-hotel-id="@hotel.HotelId">
+                                <input type="hidden" name="Rating" id="rating-@hotel.HotelId" required>
+                                <span class="star" data-value="1">&#9733;</span>
+                                <span class="star" data-value="2">&#9733;</span>
+                                <span class="star" data-value="3">&#9733;</span>
+                                <span class="star" data-value="4">&#9733;</span>
+                                <span class="star" data-value="5">&#9733;</span>
+                            </div>
+
+                            <label>Comment:</label>
+                            <textarea name="Comment" class="form-control" required></textarea>
+
+                            <button type="submit" class="btn btn-success mt-2">Submit Feedback</button>
+                        </form>
+
+                        <!-- Display Feedback -->
+                        @if (Model.Feedbacks.ContainsKey(hotel.HotelId))
+                        {
+                            <h6>Recent Feedbacks:</h6>
+                            @foreach (var feedback in Model.Feedbacks[hotel.HotelId])
+                            {
+                                <p><strong>⭐ @feedback.Rating:</strong> @feedback.Comment</p>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No approved hotels available.</p>
+}
+
+<!-- JavaScript for Star Rating -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const starContainers = document.querySelectorAll(".star-rating");
+
+        starContainers.forEach(container => {
+            const stars = container.querySelectorAll(".star");
+            const ratingInput = container.querySelector("input[name='Rating']");
+
+            stars.forEach(star => {
+                star.addEventListener("click", function () {
+                    let value = this.getAttribute("data-value");
+                    ratingInput.value = value;
+
+                    // Reset all stars
+                    stars.forEach(s => s.classList.remove("selected"));
+
+                    // Highlight selected stars
+                    for (let i = 0; i < value; i++) {
+                        stars[i].classList.add("selected");
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+<style>
+    .star-rating {
+        font-size: 24px;
+        color: gray;
+        cursor: pointer;
+    }
+
+        .star-rating .star {
+            display: inline-block;
+            transition: color 0.2s;
+        }
+
+            .star-rating .star.selected {
+                color: gold;
+            }
+</style>

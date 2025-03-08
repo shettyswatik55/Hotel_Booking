@@ -17,6 +17,10 @@ public class LoginModel : PageModel
     public string Username { get; set; }
 
     [BindProperty]
+    public int UserId { get; set; }
+
+
+    [BindProperty]
     public string Password { get; set; }
 
     public string ErrorMessage { get; set; }
@@ -25,11 +29,15 @@ public class LoginModel : PageModel
     {
         // Authenticate user using only Username & Password
         var user = _context.Users.FirstOrDefault(u => u.Username == Username && u.Password == Password);
+        //var userId = _context.Users.FirstOrDefault(u => u.Username == "admin123");
+
 
         if (user != null)
         {
             // Store logged-in user's username in session
             HttpContext.Session.SetString("LoggedInUser", Username);
+            HttpContext.Session.SetString("LoggedInUserId", user.UserID.ToString());
+
 
             return RedirectToPage("/Index"); // Redirect to homepage on successful login
         }

@@ -27,8 +27,10 @@ public class AddHotelModel : PageModel
         // Get logged-in user's username from session
         NewHotel = new Hotel
         {
-            UserName = HttpContext.Session.GetString("LoggedInUser") ?? "Guest" // Default if session is empty
+            UserName = HttpContext.Session.GetString("LoggedInUser") // Default if session is empty
+     
         };
+
     }
 
     public async Task<IActionResult> OnPostAsync()

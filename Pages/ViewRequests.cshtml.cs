@@ -44,7 +44,8 @@ public class ViewRequestModel : PageModel
             return NotFound();
         }
 
-        _context.Hotels.Remove(hotel); // Remove from database
+        //_context.Hotels.Remove(hotel); // Remove from database
+        hotel.Status = "Rejected";
         await _context.SaveChangesAsync();
 
         return RedirectToPage();
