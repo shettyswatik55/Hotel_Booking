@@ -45,13 +45,13 @@ public class BookHotelModel : PageModel
             _logger.LogWarning($"Hotel with ID {hotelId} not found.");
             return NotFound("Hotel not found.");
         }
-
+        var loggedInUser = HttpContext.Session.GetString("LoggedInUser");
         // Auto-fill Booking details
         Booking.HotelId = hotelId;
         Booking.UserId = userId;
-        //Booking.UserName = username;
+        Booking.UserName = loggedInUser;
 
-        var loggedInUser = HttpContext.Session.GetString("LoggedInUser");
+        
         if (string.IsNullOrEmpty(loggedInUser))
         {
             _logger.LogWarning("User is not logged in. Redirecting to login page.");
@@ -67,20 +67,25 @@ public class BookHotelModel : PageModel
     {
         if (!ModelState.IsValid)
         {
+            Hotel = await _context.Hotels.FindAsync(Booking.HotelId);
             _logger.LogWarning("Model validation failed. Returning to booking form.");
             return Page();
         }
 
         try
         {
+            _logger.LogInformation($"Testing.");
+            Console.WriteLine("Hello");
             _context.Bookings.Add(Booking);
             await _context.SaveChangesAsync();
+            Console.WriteLine("Await");
             _logger.LogInformation($"Booking successfully created for HotelID {Booking.HotelId} and UserID {Booking.UserId}.");
         }
         catch (Exception ex)
         {
             _logger.LogError($"Error while saving booking: {ex.Message}");
             ModelState.AddModelError("", "An error occurred while processing your booking.");
+            Hotel = await _context.Hotels.FindAsync(Booking.HotelId);
             return Page();
         }
 

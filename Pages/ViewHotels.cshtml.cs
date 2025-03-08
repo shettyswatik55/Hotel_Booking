@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Hotel_Booking_New.Model;
+using Azure.Identity;
 
 public class ViewHotelsModel : PageModel
 {
@@ -23,6 +24,7 @@ public class ViewHotelsModel : PageModel
     public Feedback NewFeedback { get; set; }
 
     public int LoggedInUserId { get; set; }
+    public string LoggedInUserName { get; set; }
 
     public async Task<IActionResult> OnGetAsync()
     {
@@ -37,7 +39,10 @@ public class ViewHotelsModel : PageModel
         }
 
         // Mock user session (replace with real session management)
-        LoggedInUserId = 1; // Replace with HttpContext.Session.GetInt32("UserId") if using sessions.
+        var id = HttpContext.Session.GetString("LoggedInUserId");
+        LoggedInUserId = int.Parse(id); // Replace with HttpContext.Session.GetInt32("UserId") if using sessions.
+        LoggedInUserName = HttpContext.Session.GetString("LoggedInUser");
+
 
         return Page();
     }

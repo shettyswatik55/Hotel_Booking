@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "S4+5i+ZpQZGP3X5IKpCCOHozl9zP9jo7+m5SwhHRbpQ=",
+  "Hash": "zpjMzTXSpmZT+5dqGdFp4MSZxIiMRaRVU+6X2PR4i0A=",
   "Source": "Hotel_Booking_New",
   "BasePath": "_content/Hotel_Booking_New",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "c2tiyv64ts",
-      "Integrity": "pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=",
+      "Fingerprint": "d7ulyt57uo",
+      "Integrity": "KZKoOG8OfrYkLT9tqqGoPeRQUgTe0Sj7IUlgDGM2Dec=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1363,51 +1363,6 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.c2tiyv64ts.css",
-      "AssetFile": "C:\\Users\\Swastik Shetty\\source\\repos\\Hotel_Booking_New\\wwwroot\\css\\site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "362"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 14:10:30 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "c2tiyv64ts"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
-        }
-      ]
-    },
-    {
       "Route": "css/site.css",
       "AssetFile": "C:\\Users\\Swastik Shetty\\source\\repos\\Hotel_Booking_New\\wwwroot\\css\\site.css",
       "Selectors": [],
@@ -1418,7 +1373,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "362"
+          "Value": "427"
         },
         {
           "Name": "Content-Type",
@@ -1426,11 +1381,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=\""
+          "Value": "\"KZKoOG8OfrYkLT9tqqGoPeRQUgTe0Sj7IUlgDGM2Dec=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 14:10:30 GMT"
+          "Value": "Sat, 08 Mar 2025 10:35:41 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1440,7 +1395,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
+          "Value": "sha256-KZKoOG8OfrYkLT9tqqGoPeRQUgTe0Sj7IUlgDGM2Dec="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.d7ulyt57uo.css",
+      "AssetFile": "C:\\Users\\Swastik Shetty\\source\\repos\\Hotel_Booking_New\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "427"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KZKoOG8OfrYkLT9tqqGoPeRQUgTe0Sj7IUlgDGM2Dec=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 08 Mar 2025 10:35:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "d7ulyt57uo"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KZKoOG8OfrYkLT9tqqGoPeRQUgTe0Sj7IUlgDGM2Dec="
         }
       ]
     },
