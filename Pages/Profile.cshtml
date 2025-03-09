@@ -47,7 +47,70 @@
         {
             <p class="text-muted">You have not added any hotels yet.</p>
         }
+
+        <!-- Display Bookings -->
+        <h3 class="mt-4">Your Bookings</h3>
+
+        @if (Model.Bookings.Any())
+        {
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Hotel Name</th>
+                        <th>Check-In</th>
+                        <th>Check-Out</th>
+                        <th>Guests</th>
+                        <th>Contact</th>
+                        <th>Total Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var booking in Model.Bookings)
+                    {
+                        <tr>
+                            <td>@booking.HotelName</td> <!-- You can replace this with booking.Hotel?.Name if you include Hotel details -->
+                            <td>@booking.CheckInDate.ToShortDateString()</td>
+                            <td>@booking.CheckOutDate.ToShortDateString()</td>
+                            <td>@booking.Guests</td>
+                            <td>@booking.ContactNumber</td>
+                            <td>$@booking.TotalPrice</td>
+                            <td><span class="badge bg-@(booking.BookingStatus == "Confirmed" ? "success" : "warning")">@booking.BookingStatus</span></td>
+                            @if (booking.BookingStatus == "Pending")
+                            {
+                                <td>
+                                    <form method="post">
+                                        <input type="hidden" name="bookingId" value="@booking.BookingId" />
+                                        <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                                    </form>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="text-muted">You have not made any bookings yet.</p>
+        }
     </div>
+
+    <!-- Show Alerts -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+            alert("@TempData["SuccessMessage"]");
+        </script>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            alert("@TempData["ErrorMessage"]");
+        </script>
+    }
 
 </body>
 </html>

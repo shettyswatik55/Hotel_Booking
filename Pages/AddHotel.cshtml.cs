@@ -27,10 +27,22 @@ public class AddHotelModel : PageModel
     public void OnGet()
     {
         // Set default values
-        NewHotel = new Hotel
+        var loggedInUser = HttpContext.Session.GetString("LoggedInUser");
+        var OwnerUserId = HttpContext.Session.GetString("LoggedInUserId");
+        if (loggedInUser != null)
         {
-            UserName = HttpContext.Session.GetString("LoggedInUser")
-        };
+            NewHotel = new Hotel
+            {
+                UserName = loggedInUser,
+                OwnerUserId = OwnerUserId
+                //OwnerUserId = HttpContext.Session.GetInt32("LoggedInUserId").Value
+            };
+        }
+        else
+        {
+            // Handle the case where the session value is null
+            ErrorMessage = "User is not logged in.";
+        }
     }
 
     public async Task<IActionResult> OnPostAsync()

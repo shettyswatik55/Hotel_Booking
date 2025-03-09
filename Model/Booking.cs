@@ -12,9 +12,13 @@ namespace Hotel_Booking_New.Model
         //[ForeignKey("Hotel")]
         public int HotelId { get; set; }
 
+        public string HotelName { get; set; }
+
         //[Required]
         //[ForeignKey("User")]
         public int UserId { get; set; }
+
+        public string OwnerUserId { get; set; }
 
         public string UserName { get; set; }
 

@@ -1,0 +1,105 @@
+﻿@page
+@model ShowRequestsModel
+
+@{
+    var user = HttpContext.Session.GetString("LoggedInUserId");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Requests</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2>Booking Requests</h2>
+
+        <!-- Status Filter -->
+        <form method="get" class="mb-3">
+            <label><strong>Filter by Status:</strong></label>
+            <select name="StatusFilter" class="form-select w-25 d-inline" onchange="this.form.submit()">
+                <option value="All" selected="@(string.IsNullOrEmpty(Model.StatusFilter) || Model.StatusFilter == "All")">All</option>
+                <option value="Pending" selected="@(Model.StatusFilter == "Pending")">Pending</option>
+                <option value="Confirmed" selected="@(Model.StatusFilter == "Confirmed")">Confirmed</option>
+                <option value="CheckedIn" selected="@(Model.StatusFilter == "CheckedIn")">Checked-In</option>
+                <option value="Canceled" selected="@(Model.StatusFilter == "Canceled")">Canceled</option>
+            </select>
+        </form>
+
+        @if (Model.Bookings.Any())
+        {
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Hotel</th>
+                        <th>User</th>
+                        <th>Check-In</th>
+                        <th>Check-Out</th>
+                        <th>Guests</th>
+                        <th>Contact</th>
+                        <th>Total Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var booking in Model.Bookings)
+                    {
+                        <tr>
+                            <td>@booking.HotelName</td>
+                            <td>@booking.UserName</td>
+                            <td>@booking.CheckInDate.ToShortDateString()</td>
+                            <td>@booking.CheckOutDate.ToShortDateString()</td>
+                            <td>@booking.Guests</td>
+                            <td>@booking.ContactNumber</td>
+                            <td>$@booking.TotalPrice</td>
+                            <td><span class="badge bg-@(booking.BookingStatus == "Confirmed" ? "success" : (booking.BookingStatus == "Pending" ? "warning" : "danger"))">@booking.BookingStatus</span></td>
+                            <td>
+                                @if (booking.BookingStatus == "Pending")
+                                {
+                                    <form method="post" class="d-inline">
+                                        <input type="hidden" name="bookingId" value="@booking.BookingId" />
+                                        <input type="hidden" name="newStatus" value="Confirmed" />
+                                        <button type="submit" asp-page-handler="UpdateStatus" class="btn btn-success btn-sm">Confirm</button>
+                                    </form>
+
+                                    <form method="post" class="d-inline">
+                                        <input type="hidden" name="bookingId" value="@booking.BookingId" />
+                                        <input type="hidden" name="newStatus" value="Canceled" />
+                                        <button type="submit" asp-page-handler="UpdateStatus" class="btn btn-danger btn-sm">Cancel</button>
+                                    </form>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="text-muted">No booking requests found. for userid: @user</p>
+            
+        }
+    </div>
+
+    <!-- Show Alerts -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+            alert("@TempData["SuccessMessage"]");
+        </script>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            alert("@TempData["ErrorMessage"]");
+        </script>
+    }
+
+</body>
+</html>

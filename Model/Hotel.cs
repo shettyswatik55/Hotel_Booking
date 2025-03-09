@@ -9,6 +9,9 @@ namespace Hotel_Booking_New.Model
         [Required(ErrorMessage = "Hotel Name is required")]
         public string UserName { get; set; }
         [Required(ErrorMessage = "User Name is required")]
+
+        public string OwnerUserId { get; set; }
+        [Required(ErrorMessage = "OwnerUser ID is required")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "City is required")]

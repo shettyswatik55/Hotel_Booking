@@ -47,6 +47,13 @@
                         @if (!string.IsNullOrEmpty(Context.Session.GetString("LoggedInUser")))
                         {
                             <li class="nav-item">
+                                <a class="nav-link" asp-page="/ShowRequests">Booking Requests</a>
+                            </li>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Context.Session.GetString("LoggedInUser")))
+                        {
+                            <li class="nav-item">
                                 <a class="nav-link" asp-page="/ViewHotels">Hotels</a>
                             </li>
                         }

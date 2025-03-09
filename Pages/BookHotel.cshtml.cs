@@ -28,7 +28,7 @@ public class BookHotelModel : PageModel
 
     public Hotel Hotel { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(int hotelId, int userId, string username)
+    public async Task<IActionResult> OnGetAsync(int hotelId,string hotelname, int userId, string username, string owneruserid)
     {
         _logger.LogInformation($"Fetching hotel details for ID: {hotelId}");
 
@@ -48,10 +48,12 @@ public class BookHotelModel : PageModel
         var loggedInUser = HttpContext.Session.GetString("LoggedInUser");
         // Auto-fill Booking details
         Booking.HotelId = hotelId;
+        Booking.OwnerUserId = owneruserid;
         Booking.UserId = userId;
         Booking.UserName = loggedInUser;
+        Booking.HotelName = hotelname;
 
-        
+
         if (string.IsNullOrEmpty(loggedInUser))
         {
             _logger.LogWarning("User is not logged in. Redirecting to login page.");

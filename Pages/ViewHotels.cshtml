@@ -23,7 +23,7 @@
                         <p class="card-text"><strong>Description:</strong> @hotel.Description</p>
 
                         <!-- Book Now Button -->
-                        <a asp-page="/BookHotel" asp-route-hotelId="@hotel.HotelId" asp-route-userId="@Model.LoggedInUserId"  asp-route-username="@username"  class="btn btn-primary">Book Now</a>
+                        <a asp-page="/BookHotel" asp-route-hotelId="@hotel.HotelId" asp-route-hotelname="@hotel.Name" asp-route-owneruserid="@hotel.OwnerUserId" asp-route-userId="@Model.LoggedInUserId" asp-route-username="@username" class="btn btn-primary">Book Now</a>
 
                         <hr>
 
