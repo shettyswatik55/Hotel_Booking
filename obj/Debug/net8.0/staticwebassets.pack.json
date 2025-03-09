@@ -13,6 +13,18 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\hp\\Desktop\\alpha plus\\Hotel_Booking\\wwwroot\\images\\080eb8dc-40f8-4171-bb90-e4ca73cb0cbf.jfif",
+      "PackagePath": "staticwebassets\\images\\080eb8dc-40f8-4171-bb90-e4ca73cb0cbf.jfif"
+    },
+    {
+      "Id": "C:\\Users\\hp\\Desktop\\alpha plus\\Hotel_Booking\\wwwroot\\images\\3bf2b6b5-481f-4a91-a882-4a3a3bd21174.jfif",
+      "PackagePath": "staticwebassets\\images\\3bf2b6b5-481f-4a91-a882-4a3a3bd21174.jfif"
+    },
+    {
+      "Id": "C:\\Users\\hp\\Desktop\\alpha plus\\Hotel_Booking\\wwwroot\\images\\b629b582-6b64-416f-85e7-dc4ae2d58918.jfif",
+      "PackagePath": "staticwebassets\\images\\b629b582-6b64-416f-85e7-dc4ae2d58918.jfif"
+    },
+    {
       "Id": "C:\\Users\\hp\\Desktop\\alpha plus\\Hotel_Booking\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

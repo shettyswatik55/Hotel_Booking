@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using Hotel_Booking_New.Model;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 
 public class AddHotelModel : PageModel
@@ -16,21 +17,20 @@ public class AddHotelModel : PageModel
 
     [BindProperty]
     public Hotel NewHotel { get; set; }
+
     [BindProperty]
-    public IFormFile HotelImage { get; set; }
+    public IFormFile HotelImage { get; set; } // Uploaded image file
 
     public string SuccessMessage { get; set; }
     public string ErrorMessage { get; set; }
 
     public void OnGet()
     {
-        // Get logged-in user's username from session
+        // Set default values
         NewHotel = new Hotel
         {
-            UserName = HttpContext.Session.GetString("LoggedInUser") // Default if session is empty
-     
+            UserName = HttpContext.Session.GetString("LoggedInUser")
         };
-
     }
 
     public async Task<IActionResult> OnPostAsync()
@@ -43,12 +43,35 @@ public class AddHotelModel : PageModel
 
         try
         {
+            // Handle Image Upload
+            if (HotelImage != null && HotelImage.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
+                Directory.CreateDirectory(uploadsFolder); // Ensure folder exists
+
+                var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(HotelImage.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await HotelImage.CopyToAsync(stream);
+                }
+
+                // Save the image path in database (relative path)
+                NewHotel.ImagePath = "/images/" + uniqueFileName;
+            }
+            else
+            {
+                // Set a default image if none is uploaded
+                NewHotel.ImagePath = "/images/default-hotel.jpg";
+            }
+
             // Save hotel details
             _context.Hotels.Add(NewHotel);
             await _context.SaveChangesAsync();
 
             SuccessMessage = "Hotel added successfully!";
-            return Page();
+            return RedirectToPage("/ViewHotels");
         }
         catch (Exception ex)
         {
