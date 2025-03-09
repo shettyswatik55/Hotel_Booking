@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Swastik Shetty\\source\\repos\\Hotel_Booking_New\\Hotel_Booking_New.csproj": {}
+    "C:\\Users\\hp\\Desktop\\alpha plus\\Hotel_Booking\\Hotel_Booking_New.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Swastik Shetty\\source\\repos\\Hotel_Booking_New\\Hotel_Booking_New.csproj": {
+    "C:\\Users\\hp\\Desktop\\alpha plus\\Hotel_Booking\\Hotel_Booking_New.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Swastik Shetty\\source\\repos\\Hotel_Booking_New\\Hotel_Booking_New.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\alpha plus\\Hotel_Booking\\Hotel_Booking_New.csproj",
         "projectName": "Hotel_Booking_New",
-        "projectPath": "C:\\Users\\Swastik Shetty\\source\\repos\\Hotel_Booking_New\\Hotel_Booking_New.csproj",
-        "packagesPath": "C:\\Users\\Swastik Shetty\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Swastik Shetty\\source\\repos\\Hotel_Booking_New\\obj\\",
+        "projectPath": "C:\\Users\\hp\\Desktop\\alpha plus\\Hotel_Booking\\Hotel_Booking_New.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\alpha plus\\Hotel_Booking\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Swastik Shetty\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

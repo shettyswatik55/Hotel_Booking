@@ -11,6 +11,11 @@ public class IndexModel(HotelContext context) : PageModel
     public void OnGet()
     {
         Hotels = _context.Hotels.ToList(); // Read all hotels
+        if (Request.Query.ContainsKey("logout"))
+        {
+            HttpContext.Session.Remove("LoggedInUser");
+            HttpContext.Session.Remove("LoggedInUserId");
+        }
     }
 
     public IActionResult OnPostCreate(int HotelId, string Name, string location)

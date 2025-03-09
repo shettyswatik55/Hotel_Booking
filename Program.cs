@@ -22,7 +22,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddDbContext<HotelContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ??
-                         "Server=LAPTOP-5F2V16D4\\MSSQLSERVER01;Database=HotelDb;Trusted_Connection=True;TrustServerCertificate=True;");
+                         "Server=RUCHI\\MSSQLSERVER02;Database=HotelDb;Trusted_Connection=True;TrustServerCertificate=True;");
 });
 
 // ✅ Configure Authentication & Identity

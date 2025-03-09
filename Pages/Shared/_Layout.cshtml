@@ -17,7 +17,7 @@
                 <a class="navbar-brand" asp-area="" asp-page="/Index">Hotel_Booking_New</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -28,11 +28,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Signup">Login/Signup</a>
-
                         </li>
 
                         @if (!string.IsNullOrEmpty(Context.Session.GetString("LoggedInUser")))
@@ -60,6 +55,21 @@
                         {
                             <li class="nav-item">
                                 <a class="nav-link" asp-page="/ViewRequests">View Requests</a>
+                            </li>
+                        }
+
+                        @if (string.IsNullOrEmpty(Context.Session.GetString("LoggedInUser")))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Signup">Login/Signup</a>
+
+                            </li>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Context.Session.GetString("LoggedInUser")))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Index" asp-route-logout="true">Logout</a>
                             </li>
                         }
                     </ul>
